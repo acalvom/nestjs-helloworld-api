@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CharacterService } from './character.service';
+import { CharacterDto } from './characterDto';
 
 @Controller('character')
 export class CharacterController {
@@ -11,8 +12,14 @@ export class CharacterController {
     }
 
     @Get(':id')
-    async getCharacterById(@Param('id') id: string){
-         return this.characterService.getCharacterById(id);
+    async getCharacterById(@Param('id') id: string) {
+        return this.characterService.getCharacterById(id);
+    }
+
+    @Post('/add')
+    async postCharacter(@Body() character: CharacterDto) {
+        console.log(character);
+        return this.characterService.postCharacter(character);
     }
 
 }
