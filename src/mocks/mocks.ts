@@ -47,6 +47,5 @@ export const CHARACTERS =
             "name": "aquaman (arthur curry)",
             "id": 5,
             "sex": "male"
-
         }
     ]
