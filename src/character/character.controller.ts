@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CharacterService } from './character.service';
-import { CharacterDto } from './characterDto';
+import { CharacterDto } from './character.dto';
 
 @Controller('character')
 export class CharacterController {

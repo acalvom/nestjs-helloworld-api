@@ -1,18 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CHARACTERS } from '../mocks/mocks';
-import { CharacterDto } from './characterDto';
+import { CharacterDto } from './character.dto';
 
 @Injectable()
 export class CharacterService {
     private characters = CHARACTERS;
 
     public async getCharacters() {
-        console.log(this.characters);
         return this.characters;
     }
 
     public async getCharacterById(id: string) {
-        return this.characters.filter(item => item.id === parseInt(id));
+        let index = this.characters.findIndex(item => item.id === parseInt(id));
+        return index !== - 1 ? this.characters.filter(item => item.id === parseInt(id)) : HttpStatus.NOT_FOUND;
     }
 
     public async postCharacter(character: CharacterDto) {
@@ -20,6 +20,7 @@ export class CharacterService {
     }
 
     async deleteCharacterById(id: string) {
-        return this.characters.filter(item => item.id !== parseInt(id));
+        let index = this.characters.findIndex(item => item.id === parseInt(id));
+        return index !== - 1 ? this.characters.splice(index, 1) : HttpStatus.NOT_FOUND;
     }
 }
