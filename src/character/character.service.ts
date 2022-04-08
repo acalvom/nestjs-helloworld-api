@@ -9,4 +9,8 @@ export class CharacterService {
         console.log(this.characters);
         return this.characters;
     }
+
+    public async getCharacterById(id: string) {
+        return this.characters.filter(item => item.id === parseInt(id));
+    }
 }
