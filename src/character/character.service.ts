@@ -1,4 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { CHARACTERS } from '../mocks/mocks';
 
 @Injectable()
-export class CharacterService {}
+export class CharacterService {
+    private characters = CHARACTERS;
+
+    public async getCharacters() {
+        console.log(this.characters);
+        return this.characters;
+    }
+}
