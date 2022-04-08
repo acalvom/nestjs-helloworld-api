@@ -18,4 +18,8 @@ export class CharacterService {
     public async postCharacter(character: CharacterDto) {
         return [...CHARACTERS, character];
     }
+
+    async deleteCharacterById(id: string) {
+        return this.characters.filter(item => item.id !== parseInt(id));
+    }
 }

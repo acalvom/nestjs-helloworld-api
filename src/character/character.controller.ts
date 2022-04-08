@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CharacterService } from './character.service';
 import { CharacterDto } from './characterDto';
 
@@ -18,8 +18,12 @@ export class CharacterController {
 
     @Post('/add')
     async postCharacter(@Body() character: CharacterDto) {
-        console.log(character);
         return this.characterService.postCharacter(character);
+    }
+
+    @Delete(':id')
+    async deleteCharacterById(@Param('id') id: string) {
+        return this.characterService.deleteCharacterById(id);
     }
 
 }
